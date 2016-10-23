@@ -51,13 +51,16 @@ echo "PROCEEED WITH CAUTION"
 echo "==========="
 fdisk -l /dev/sda
 echo -e "\e[32m \e[40m"
-while true; do
-    read -p "Enter 'pwn' to delete all of the above partitions:   " choice
-    case $choice in
-        [pwn]* ) echo "Pwning"; sleep 5s; break;; #Run script
-        * ) echo "Back to main menu";break;;
-    esac
-done
+read -p "Enter 'pwn' to delete all of the above partitions:   " choice
+#echo $choice
+#sleep 3s
+if ["$choice "== "pwn"];
+then
+        echo "Pwning"; 
+	sleep 5s; #Run script
+else
+	echo "Back to main menu";
+fi
 
 #The below command scrubs the master boot record
 #sudo dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc
